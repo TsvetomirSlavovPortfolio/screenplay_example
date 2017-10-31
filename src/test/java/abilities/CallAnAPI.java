@@ -6,6 +6,7 @@ import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.RefersToActor;
 
 import static net.serenitybdd.rest.SerenityRest.given;
+import static net.serenitybdd.rest.SerenityRest.then;
 
 public class CallAnAPI implements Ability, RefersToActor {
 
@@ -36,9 +37,25 @@ public class CallAnAPI implements Ability, RefersToActor {
                 .then().extract().response();
     }
 
+    public void callService(String path, String body) {
+        response = given()
+                .baseUri("http://localhost")
+                .port(9080)
+                .header("Content-Type", "application/json")
+                .body(body)
+                .when()
+                .post(path)
+                .then().extract().response();
+    }
+
     public boolean loginWasSuccesful() {
         System.out.println(response.getBody().prettyPrint());
         return response.getStatusCode() == 200;
+    }
+
+    public Response returnResponse(){
+        response = then().extract().response();
+        return response;
     }
 
     public static CallAnAPI as(Actor actor) {

@@ -1,0 +1,19 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "/inventory",
+    "bodyPatterns": [{
+      "matchesJsonPath":"$.[?(@.product == 'tulips')]"
+    }
+    ]
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "MockServer": "This is a mock response, the contents of your request haven't been validated",
+      "Content-Type": "application/json"
+    },
+    "body": "{\"inventory\":\"2000\"}"
+  },
+  "priority": 9
+}

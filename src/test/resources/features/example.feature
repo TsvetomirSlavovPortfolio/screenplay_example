@@ -1,9 +1,10 @@
-Feature: Searching by keyword
+Feature: Getting inventory details for a product
 
-  In order to find items that I would like to purchase
-  As a potential buyer
-  I want to be able to search for items containing certain words
+  In order to make sure a product is available,
+  as customer,
+  I want to get inventory information for a product
 
-  Scenario: Should list items related to a specified keyword
+  Scenario: Should get
     Given Pietje is logged in
-    When Pietje retrieves the inventory of 'tulips'
+    When he retrieves the inventory for 'tulips'
+    Then the inventory is '2000'
